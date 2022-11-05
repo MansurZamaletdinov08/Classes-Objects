@@ -1,25 +1,29 @@
-﻿#include <iostream>
+#include <iostream>
 #include <string>
 
 class Counter {
-public:
+private:
     int y;
-    int incr() {
-        y++;
-        return y;
+public:
+    Counter(int value) {
+        y = value;
     }
 
-    int decr() {
+    Counter() {
+        y = 1;
+    }
+
+    void incr() {
+        y++;
+    }
+
+    void decr() {
         y--;
-        return y;
     }
 
     int rev() {
-        return y;
+        return this->y;
     }
-
-private:
-    int counter = 1;
 };
 
 int main() {
@@ -35,12 +39,13 @@ int main() {
     if (f == 'Y') {
         std::cout << "Введите начальное значение счётчика : ";
         std::cin >> x;
+        Counter Counter(x);
     }
     else {
         x = 1;
+        Counter Counter();
     }
 
-    obj.y = x;
 
     do {
         std::cout << "Введите команду ('+', '-', '=' или 'x'): ";
@@ -56,7 +61,7 @@ int main() {
 
         if (op == '=') {
             obj.rev();
-            std::cout << obj.y << std::endl;
+            std::cout << x << std::endl;
         }
         if (op == 'x') {
             std::cout << "До всидания!";
