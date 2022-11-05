@@ -1,87 +1,66 @@
 #include <iostream>
+#include <string>
 
-class Calculator {
-    double num1 = 1;
-    double num2 = 1;
-
+class Counter {
+private:
+    int y;
 public:
-    double add() {
-        return num1 + num2;
+    int incr() {
+        y++;
+        return y;
     }
 
-    double subtract_2_1() {
-        return num1 - num2;
+    int decr() {
+        y--;
+        return y;
     }
 
-    double subtract_1_2() {
-        return num2 - num1;
+    int rev() {
+        return y;
     }
 
-    double multiply() {
-        return num1 * num2;
-    }
-
-    double divide_1_2() {
-        return num1 / num2;
-    }
-
-    double divide_2_1() {
-        return num2 / num1;
-    }
-
-    bool set_num1(double num1) {
-        if (num1 == 0) {
-            return false;
-        }
-        else {
-            this->num1 = num1;
-            return true;
-        }
-    }
-    
-    bool set_num2(double num2) {
-        if (num2 == 0) {
-            return false;
-        }
-        else {
-            this->num2 = num2;
-            return true;
-        }
-
-    }
+private:
+    int counter = 1;
 };
 
 int main() {
     setlocale(LC_ALL, "Ru");
-    double num1, num2;
+    Counter obj;
+    char f;
+    int x;
+    char op;
 
-    int i = 0;
+    std::cout << "Вы хотите указать начальное значение счётчика ? Введите Y или N : ";
+    std::cin >> f;
 
-    Calculator operation;
-    while (true) {
-        std::cout << "Введите num1: ";
-        std::cin >> num1;
-
-        std::cout << "Введите num2: ";
-        std::cin >> num2;
-
-        operation.set_num1(num1);
-        operation.set_num2(num2);
-        while (num1 == 0) {
-            std::cout << "Неверный ввод!" << std::endl;
-            std::cout << "Введите ещё раз: ";
-            std::cin >> num1;
-        }
-        while (num2 == 0) {
-            std::cout << "Неверный ввод!" << std::endl;
-            std::cout << "Введите ещё раз: ";
-            std::cin >> num2;
-        }
-        std::cout << "num1 + num2 = " << operation.add() << std::endl;
-        std::cout << "num1 - num2 = " << operation.subtract_2_1() << std::endl;
-        std::cout << "num2 - num1 = " << operation.subtract_1_2() << std::endl;
-        std::cout << "num1 * num2 = " << operation.multiply() << std::endl;
-        std::cout << "num1 / num2 = " << operation.divide_1_2() << std::endl;
-        std::cout << "num2 / num1 = " << operation.divide_2_1() << std::endl;
+    if (f == 'Y') {
+        std::cout << "Введите начальное значение счётчика : ";
+        std::cin >> x;
     }
+    else {
+        x = 1;
+    }
+
+    obj.y = x;
+
+    do {
+        std::cout << "Введите команду ('+', '-', '=' или 'x'): ";
+        std::cin >> op;
+
+        if (op == '+') {
+            obj.incr();
+        }
+
+        if (op == '-') {
+            obj.decr();
+        }
+
+        if (op == '=') {
+            obj.rev();
+            std::cout << obj.y << std::endl;
+        }
+        if (op == 'x') {
+            std::cout << "До всидания!";
+        }
+    } while (op != 'x');
 }
