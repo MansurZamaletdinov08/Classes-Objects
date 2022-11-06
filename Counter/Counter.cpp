@@ -32,20 +32,24 @@ int main() {
     char f;
     int x;
     char op;
-
+    
+    int a = obj.rev();
     std::cout << "Вы хотите указать начальное значение счётчика ? Введите Y или N : ";
     std::cin >> f;
 
     if (f == 'Y') {
         std::cout << "Введите начальное значение счётчика : ";
         std::cin >> x;
-        Counter Counter(x);
+        a = x;
     }
     else {
         x = 1;
-        Counter Counter();
+        a = x;
     }
+    Counter Counter(x);
+    obj = Counter;
 
+    a = x;
 
     do {
         std::cout << "Введите команду ('+', '-', '=' или 'x'): ";
@@ -53,15 +57,17 @@ int main() {
 
         if (op == '+') {
             obj.incr();
+            a = obj.rev();
         }
 
         if (op == '-') {
             obj.decr();
+            a = obj.rev();
         }
 
         if (op == '=') {
             obj.rev();
-            std::cout << x << std::endl;
+            std::cout << a << std::endl;
         }
         if (op == 'x') {
             std::cout << "До всидания!";
